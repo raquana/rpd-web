@@ -9,7 +9,7 @@
 Thanks!
 <?php
 $file = 'message.dsp';
-$text = $_POST['txt'] . "\n" . $_POST['rgb'];
+$text = $_POST['txt'] . "\n" . $_POST['rgb'] . "\n" . $_POST['for'];
 file_put_contents($file, $text, LOCK_EX);
 ?>
 </body>

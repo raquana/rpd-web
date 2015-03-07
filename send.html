@@ -1,0 +1,71 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Send to Display</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-colorpicker.min.js"></script>
+  <link rel="stylesheet" href="css/bootstrap-colorpicker.min.css"/>
+</head>
+<body>
+
+<div class="container">
+   <div class="col-sm-offset-2">
+   <h3>Send to Display</h3>
+   </div>
+   <form id="message" class="form-horizontal" role="form" autocomplete="off">
+     <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-2">
+       <div class="input-group" id="custom">
+         <input type="text" value="#ff0000" class="form-control"/>
+         <span class="input-group-addon"><i></i></span>
+       </div>
+      </div>
+     </div>
+     <div class="form-group">
+       <div class="col-sm-offset-2 col-sm-4">
+         <input placeholder="Enter Text" type="text" class="form-control" id="txt" name="txt"/>
+       </div>
+     </div>
+     <div class="form-group">
+       <div class="col-sm-offset-2 col-sm-2">
+         <select class="form-control" name="for">
+           <option value="1" disabled selected>Chose Duration</option>
+           <option>1</option>
+           <option>2</option>
+           <option>3</option>
+           <option>4</option>
+           <option>5</option>
+         </select>
+       </div>
+     </div>
+     <input type="hidden" id="rgb" name="rgb"/>
+     <div class="form-group">
+       <div class="col-sm-offset-2 col-sm-10">
+         <button id="submit" class="btn btn-primary">Send</button>
+       </div>
+     </div>
+   </form>
+   <div class="col-sm-offset-2" id="result"/>
+</div>
+<script>
+$("#custom").colorpicker({format:"rgb"});
+$("#submit").on("click", function(e) {
+	e.preventDefault();
+	$.post("post.php", $("#message").serializeArray()).done(function(data) {
+		$("#result").show();
+		$("#result").html("Thanks!");
+		$("#result").fadeOut('slow');
+	});
+});
+$("#custom").colorpicker().on("changeColor.colorpicker", function(event){
+  $("#rgb").val($(this).colorpicker("getValue"));
+});
+$("#rgb").val($("#custom").colorpicker("getValue"));
+$("#txt").focus();
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+watchmedo shell-command --patterns="*.dsp" --command='echo "${watch_src_path}"'
+
+watchmedo shell-command --patterns=*.dsp --command=sshpass -p "<PASSWORD>" scp "${watch_src_path}" pi@192.168.1.27:~/display/pycode
+
+watchmedo shell-command --recursive --patterns=*.dsp --command="sshpass -p <PASSWORD> scp ${watch_src_path} pi@192.168.1.27:~/display/pycode"

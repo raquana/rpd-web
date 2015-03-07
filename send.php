@@ -11,6 +11,13 @@ Pick a colour: <input type='text' id='custom'/>
 <form id="message" autocomplete="off">
   Text:<input type="text" name="txt" id="txt"/>
   Colour:<input type="text" name="rgb" id="rgb" readonly/>
+  Duration:<select name="for">
+           <option>1</option>
+           <option>2</option>
+           <option>3</option>
+           <option>4</option>
+           <option>5</option>
+           </select>
 </form>
 <a href="javascript:writeJson()">Send To Pi</a>
 <div id="result"></div> 
@@ -35,10 +42,5 @@ function writeJson() {
 	});
 }
 </script>
-<?php
-$file = 'message.dsp';
-$text = 'Show This...';
-file_put_contents($file, $text, LOCK_EX);
-?>
 </body>
 </html>
